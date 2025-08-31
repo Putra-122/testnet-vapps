@@ -1,0 +1,40 @@
+# Proposal: On-Chain Dice Game vApp
+
+## Author
+- GitHub: @putra-122
+
+## Category
+- Gaming
+
+## Description
+A simple on-chain dice game where players roll a dice (1–6) and their scores are stored on-chain.  
+A leaderboard tracks the highest scores among players.  
+This project demonstrates the gaming potential on the Soundness Layer.
+
+## Technical Architecture
+- Frontend: Web dApp (React + Tailwind).
+- Backend: Smart contract (testnet).
+- Flow:
+  1. Player connects wallet.
+    2. Clicks "Roll Dice".
+      3. Contract generates a random number 1–6.
+        4. Player’s score is updated on-chain.
+          5. Leaderboard can be displayed.
+
+          ## Example Pseudocode
+          ```solidity
+          contract DiceGame {
+                mapping(address => uint256) public scores;
+
+                    function rollDice() public {
+                                uint256 dice = (uint256(keccak256(abi.encodePacked(block.timestamp, msg.sender))) % 6) + 1;
+                                        scores[msg.sender] += dice;
+                    }
+
+                        function getScore(address player) public view returns (uint256) {
+                                    return scores[player];
+                        }
+          }
+                        }
+                    }
+          }
